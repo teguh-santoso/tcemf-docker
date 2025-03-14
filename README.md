@@ -30,10 +30,8 @@ docker compose up -d
 - Sesuaikan parameter isian instalasi tersebut dengan file .env yang telah anda ubah sebelumnya
 - Pada hostname mysql masukkan ```mysql```
 - Akun default untuk login administrator adalah
-```
+```shell
 username : admin
-```
-```
 password : 1234
 ```
 - Segera ubah akun default setelah berhasil login
