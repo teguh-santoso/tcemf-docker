@@ -1,0 +1,68 @@
+services:
+  mysql:
+    image: mariadb:11.4
+    logging:
+      driver: none
+    command: ["--max-allowed-packet=512M"]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    restart: always
+    networks:
+      - default
+  litespeed:
+    image: litespeedtech/openlitespeed:${OLS_VERSION}-${PHP_VERSION}
+    container_name: litespeed
+    env_file:
+      - .env
+    volumes:
+      - ./sites:/var/www/vhosts/
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+      - 7080:7080
+    restart: always
+    environment:
+      TZ: ${TimeZone}
+    networks:
+      - default
+  phpmyadmin:
+    image: bitnami/phpmyadmin:5.2.2
+    ports:
+      - 8080:8080
+      - 8443:8443
+    environment:
+        DATABASE_HOST: mysql
+    restart: always
+    networks:
+      - default
+  #opsional, jika anda tidak ingin menginstall Redis silakan hapus blok Redis di bawah
+  redis:
+    image: "redis:alpine"
+    logging:
+      driver: none
+    volumes:
+      - ./redis/data:/var/lib/redis
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    restart: always
+    networks:
+      - default
+  #opsional, jika anda tidak ingin menginstall Firebrowser silakan hapus blok Filebrowser di bawah
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    volumes:
+      - ./sites:/srv
+    environment:
+      - PUID=$(id -u)
+      - PGID=$(id -g)
+    ports:
+      - 8095:80
+networks:
+  default:
+    driver: bridge
