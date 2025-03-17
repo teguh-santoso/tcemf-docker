@@ -17,6 +17,10 @@ apt install git
 ```shell
 git clone https://github.com/teguh-santoso/tcemf-docker.git
 ```
+- ubah permission folder tcemf-docker
+```shell
+chown -R www-data:www-data tcemf-docker
+```
 - Masuk ke folder tcemf-docker
 - Ubah file .env sesuai kebutuhan
 - Jalankan perintah berikut
