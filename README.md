@@ -8,7 +8,7 @@ Install TCE Mobile Friendly dengan cepat menggunakan Docker.
 - Penyimpanan : 10GB (minimal) atau 40GB (direkomendasikan)
 - Jumlah core : 1 (minimal) atau 4 (direkomendasikan)
 ### 2 - Depedensi
-Untuk bisa menjalankan perangkat lunak ini diperlukan Git, Docker dan Docker Compose. Petunjuk instalasi Docker dan Docker Compose : [Ubuntu](https://docs.docker.com/engine/install/ubuntu/) / [Debian](https://docs.docker.com/engine/install/debian/). Sedangkan untuk menginstall git menggunakan perintah sebagai sebagai berikut :
+Untuk bisa menjalankan perangkat lunak ini diperlukan Git, Docker dan Docker Compose. Petunjuk instalasi Docker dan Docker Compose : [Ubuntu](https://docs.docker.com/engine/install/ubuntu/) / [Debian](https://docs.docker.com/engine/install/debian/). Sedangkan untuk menginstall git menggunakan perintah sebagai berikut :
 ```shell
 apt install git
 ```
